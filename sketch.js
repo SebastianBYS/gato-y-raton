@@ -1,7 +1,7 @@
 var canvas,bg,bgImg;
 var together;
 var tom, tomAni1,tomAni2,tomAni3;
-var jerry, jerryAni1,jerryAni2;
+var jerry, jerryAni1,jerryAni2,jerryAni3;
 
 function preload() {
     //carga aquí las imágenes
@@ -9,8 +9,9 @@ function preload() {
     tomAni1= loadAnimation("imagenes/tomOne.png");
     tomAni2= loadAnimation("imagenes/tomTwo.png","imagenes/tomThree.png");
     tomAni3= loadAnimation("imagenes/tomFour.png");
-    jerryAni1 = loadAnimation("imagenes/jerryOne.png","imagenes/jerryTwo.png","imagenes/jerryThree.png");
-    jerryAni2 = loadAnimation("imagenes/jerryFour.png");
+    jerryAni1 = loadAnimation("imagenes/jerryOne.png");
+    jerryAni2 = loadAnimation("imagenes/jerryTwo.png","imagenes/jerryThree.png");
+    jerryAni3 = loadAnimation("imagenes/jerryFour.png");
 }
 
 function setup(){
@@ -34,14 +35,17 @@ function setup(){
 
 function draw() {
 
-    if(tom.x - jerry.x <= jerry.width/2 + tom.width/2 && 
-        jerry.x-tom.x<= jerry.width/2 + tom.width/2 ){
+    if(tom.x - jerry.x < (tom.width + jerry.width)/2) {
         tom.velocityX=0;
-        tom.addAnimation("santado",tomAni3);
+        tom.addAnimation("sentado",tomAni3);
+        tom.x=300;
+        tom.scale=0.2;
         tom.changeAnimation("sentado");
         jerry.addAnimation("ojito",jerryAni2);
+        jerry,scale=0.15;
         jerry.changeAnimation("ojito");
         }
+
        //else{
         
        //}
@@ -50,6 +54,7 @@ function draw() {
             tom.addAnimation("caminanding",tomAni2);
             tom.changeAnimation("caminanding");
         }
+        keyPressed();
         drawSprites();
       }
 
@@ -57,7 +62,9 @@ function keyPressed(){
     if (keyCode === LEFT_ARROW){
         tom.velocityX = -5;
         tom.addAnimation("caminanding",tomAni2);
-        tpm.changeAnimation("caminanding");
+        tom.changeAnimation("caminanding");
+        jerry.addAnimation("viendo",jerryAni2);
+        jerry.changeAnimation("viendo");
 //Escribe aquí el código para la animación de movimeinto y cambio
 }
 }
